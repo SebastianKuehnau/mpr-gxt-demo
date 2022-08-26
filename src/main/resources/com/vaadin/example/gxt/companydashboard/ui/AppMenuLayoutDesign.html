@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;mytheme&quot;}">
+  <meta name="vaadin-version" content="8.0.2">
+  <meta name="package-mapping" content="com_vaadin_example_gxt_companydashboard_ui_migration:com.vaadin.example.gxt.companydashboard.ui.migration">
+ </head>
+ <body>
+  <vaadin-horizontal-layout style-name="app-shell" spacing="false" responsive size-full>
+   <vaadin-css-layout style-name="navigation-bar-container" width="200px" height-full>
+    <vaadin-css-layout style-name="navigation-bar" size-full>
+     <vaadin-label style-name="logo" width-full plain-text>
+       My App 
+     </vaadin-label>
+     <vaadin-button icon="fonticon://Vaadin-Icons/e7b3" style-name="menu borderless" plain-text _id="menuButton">
+       Menu 
+     </vaadin-button>
+     <vaadin-css-layout style-name="navigation" width-full _id="menu">
+      <vaadin-button icon="fonticon://Vaadin-Icons/e7e9" style-name="borderless" width-full plain-text _id="dashboard">
+        Dashboard 
+      </vaadin-button>
+      <vaadin-button icon="fonticon://Vaadin-Icons/e68e" style-name="borderless" width-full plain-text _id="reports">
+        Reports 
+      </vaadin-button>
+     </vaadin-css-layout>
+    </vaadin-css-layout>
+   </vaadin-css-layout>
+   <vaadin-vertical-layout style-name="content-container" spacing="false" size-full margin="false" _id="content" :expand></vaadin-vertical-layout>
+  </vaadin-horizontal-layout>
+ </body>
+</html>

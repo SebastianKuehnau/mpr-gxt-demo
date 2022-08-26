@@ -1,0 +1,26 @@
+@import "mytheme.scss";
+@import "addons.scss";
+@import "designs.scss";
+
+// This file prefixes all rules with the theme name to avoid causing conflicts with other themes.
+// The actual styles should be defined in mytheme.scss
+
+.mytheme {
+  @include vaadin-app-shell-template;
+  @include addons;
+  @include mytheme;
+
+  $green: #40b527;
+  $darkgreen: darken($green, 30%);
+
+  div.my-vaadin8-widget-app {
+    color: $green;
+    font-size: 50pt;
+    font-weight: bold;
+    text-shadow: 0px 3px 0px $darkgreen,
+    0px 14px 10px rgba(0,0,0,0.15),
+    0px 24px 2px rgba(0,0,0,0.1),
+    0px 34px 30px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+}

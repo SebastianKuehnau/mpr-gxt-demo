@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.vaadin.example.gxt</groupId>
+    <artifactId>company-dashboard-migration</artifactId>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>company-dashboard-mpr-migration</name>
+
+    <prerequisites>
+        <maven>3</maven>
+    </prerequisites>
+
+    <properties>
+        <vaadin.version>23.1.7</vaadin.version>
+        <flow.version>23.1.6</flow.version>
+        <vaadin8.version>8.16.1</vaadin8.version>
+        <jetty.plugin.version>9.4.46.v20220331</jetty.plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <slf4j.version>1.7.36</slf4j.version>
+        <!-- If there are no local customisations, this can also be "fetch" 
+            or "cdn" -->
+        <vaadin.widgetset.mode>local</vaadin.widgetset.mode>
+        <gwt.version>2.9.0</gwt.version>
+        <gxt.version>4.1.0</gxt.version>
+        <gxt.systemPath>
+            /Users/sebastian/Documents/Vaadin/Sales-Support/gxt-mpr-demo/com.sencha.gxt_gxt-release-4.1.0/gxt.jar
+        </gxt.systemPath>
+        <gxt-chart.systemPath>
+            /Users/sebastian/Documents/Vaadin/Sales-Support/gxt-mpr-demo/com.sencha.gxt_gxt-release-4.1.0/gxt-chart.jar
+        </gxt-chart.systemPath>
+        <gxt-theme-neptune.systemPath>
+            /Users/sebastian/Documents/Vaadin/Sales-Support/gxt-mpr-demo/com.sencha.gxt_gxt-release-4.1.0/gxt-theme-neptune.jar
+        </gxt-theme-neptune.systemPath>
+        <gxt-theme-triton.systemPath>
+            /Users/sebastian/Documents/Vaadin/Sales-Support/gxt-mpr-demo/com.sencha.gxt_gxt-release-4.1.0/gxt-theme-triton.jar
+        </gxt-theme-triton.systemPath>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>sencha-myget</id>
+            <url>https://sencha.myget.org/F/artifacts/maven/</url>
+        </repository>
+        <repository>
+            <id>vaadin-addons</id>
+            <url>https://maven.vaadin.com/vaadin-addons</url>
+        </repository>
+        <repository>
+            <id>sencha-gxt-repository</id>
+            <name>Sencha GXT Repository</name>
+            <!-- GPL -->
+            <url>https://maven.sencha.com/repo/gxt-gpl-release</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>sencha-myget</id>
+            <url>https://sencha.myget.org/F/artifacts/maven/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-bom</artifactId>
+                <version>${vaadin.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt</artifactId>
+                <version>${gwt.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- GXT -->
+        <!-- http://docs.sencha.com/gxt/3.x/getting_started/maven/Maven.html -->
+        <dependency>
+            <groupId>com.sencha.gxt</groupId>
+            <artifactId>gxt</artifactId>
+            <version>${gxt.version}</version>
+            <scope>system</scope>
+            <systemPath>${gxt.systemPath}</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.sencha.gxt</groupId>
+            <artifactId>gxt-chart</artifactId>
+            <version>${gxt.version}</version>
+            <scope>system</scope>
+            <systemPath>${gxt-chart.systemPath}</systemPath>
+        </dependency>
+        <!-- Neptune Theme -->
+        <dependency>
+            <groupId>com.sencha.gxt</groupId>
+            <artifactId>gxt-theme-neptune</artifactId>
+            <version>${gxt.version}</version>
+            <scope>system</scope>
+            <systemPath>${gxt-theme-neptune.systemPath}</systemPath>
+        </dependency>
+        <!-- Triton Theme -->
+        <dependency>
+            <groupId>com.sencha.gxt</groupId>
+            <artifactId>gxt-theme-triton</artifactId>
+            <version>${gxt.version}</version>
+            <scope>system</scope>
+            <systemPath>${gxt-theme-triton.systemPath}</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-codeserver</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-servlet</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.1.214</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>2.7.11</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>7.0.5.Final</version>
+        </dependency>
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>mpr-v8</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-server</artifactId>
+            <version>${vaadin8.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jsoup</groupId>
+                    <artifactId>jsoup</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.gwt</groupId>
+                    <artifactId>gwt-elemental</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-push</artifactId>
+            <version>${vaadin8.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-client</artifactId>
+            <version>${vaadin8.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-themes</artifactId>
+            <version>${vaadin8.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+            <version>9.24.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>my-vaadin8-widget-app-addon</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-maven-plugin</artifactId>
+                <version>${vaadin8.version}</version>
+                <configuration>
+                    <style>OBF</style>
+                    <webappDirectory>${basedir}/src/main/webapp/VAADIN/widgetsets</webappDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>update-theme</goal>
+                            <goal>update-widgetset</goal>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.vaadin</groupId>
+                <artifactId>flow-maven-plugin</artifactId>
+                <version>${flow.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-frontend</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.2.0</version>
+                <!-- Clean up also any pre-compiled themes -->
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>src/main/webapp/VAADIN/themes</directory>
+                            <includes>
+                                <include>**/styles.css</include>
+                                <include>**/styles.scss.cache</include>
+                            </includes>
+                        </fileset>
+                        <fileset>
+                            <directory>src/main/webapp/VAADIN/widgetsets</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+            <!-- The Jetty plugin allows us to easily test the development 
+                build by running jetty:run on the command line. -->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty.plugin.version}</version>
+                <configuration>
+                    <scanIntervalSeconds>2</scanIntervalSeconds>
+                </configuration>
+            </plugin>
+            <!-- Skips the GWTTestCases during Junit Testing -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/*GwtTest.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <!-- Vaadin pre-release repositories -->
+            <id>vaadin-prerelease</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+
+            <repositories>
+                <repository>
+                    <id>vaadin-prereleases</id>
+                    <url>http://maven.vaadin.com/vaadin-prereleases</url>
+                </repository>
+                <repository>
+                    <id>vaadin-snapshots</id>
+                    <url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>vaadin-prereleases</id>
+                    <url>http://maven.vaadin.com/vaadin-prereleases</url>
+                </pluginRepository>
+                <pluginRepository>
+                    <id>vaadin-snapshots</id>
+                    <url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+        <profile>
+            <!-- Production mode is activated using -Pproduction -->
+            <id>production</id>
+            <properties>
+                <vaadin.productionMode>true</vaadin.productionMode>
+            </properties>
+
+            <dependencies>
+                <dependency>
+                    <groupId>com.vaadin</groupId>
+                    <artifactId>flow-server-production-mode</artifactId>
+                </dependency>
+            </dependencies>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.vaadin</groupId>
+                        <artifactId>flow-maven-plugin</artifactId>
+                        <version>${flow.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>build-frontend</goal>
+                                </goals>
+                                <phase>compile</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>
