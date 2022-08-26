@@ -27,18 +27,6 @@
         <vaadin.widgetset.mode>local</vaadin.widgetset.mode>
         <gwt.version>2.9.0</gwt.version>
         <gxt.version>4.1.0</gxt.version>
-        <gxt.systemPath>
-            /Users/sebastian/Documents/Vaadin/Sales-Support/gxt-mpr-demo/com.sencha.gxt_gxt-release-4.1.0/gxt.jar
-        </gxt.systemPath>
-        <gxt-chart.systemPath>
-            /Users/sebastian/Documents/Vaadin/Sales-Support/gxt-mpr-demo/com.sencha.gxt_gxt-release-4.1.0/gxt-chart.jar
-        </gxt-chart.systemPath>
-        <gxt-theme-neptune.systemPath>
-            /Users/sebastian/Documents/Vaadin/Sales-Support/gxt-mpr-demo/com.sencha.gxt_gxt-release-4.1.0/gxt-theme-neptune.jar
-        </gxt-theme-neptune.systemPath>
-        <gxt-theme-triton.systemPath>
-            /Users/sebastian/Documents/Vaadin/Sales-Support/gxt-mpr-demo/com.sencha.gxt_gxt-release-4.1.0/gxt-theme-triton.jar
-        </gxt-theme-triton.systemPath>
     </properties>
 
     <repositories>
@@ -91,31 +79,23 @@
             <groupId>com.sencha.gxt</groupId>
             <artifactId>gxt</artifactId>
             <version>${gxt.version}</version>
-            <scope>system</scope>
-            <systemPath>${gxt.systemPath}</systemPath>
         </dependency>
         <dependency>
             <groupId>com.sencha.gxt</groupId>
             <artifactId>gxt-chart</artifactId>
             <version>${gxt.version}</version>
-            <scope>system</scope>
-            <systemPath>${gxt-chart.systemPath}</systemPath>
         </dependency>
         <!-- Neptune Theme -->
         <dependency>
             <groupId>com.sencha.gxt</groupId>
             <artifactId>gxt-theme-neptune</artifactId>
             <version>${gxt.version}</version>
-            <scope>system</scope>
-            <systemPath>${gxt-theme-neptune.systemPath}</systemPath>
         </dependency>
         <!-- Triton Theme -->
         <dependency>
             <groupId>com.sencha.gxt</groupId>
             <artifactId>gxt-theme-triton</artifactId>
             <version>${gxt.version}</version>
-            <scope>system</scope>
-            <systemPath>${gxt-theme-triton.systemPath}</systemPath>
         </dependency>
 
         <dependency>
