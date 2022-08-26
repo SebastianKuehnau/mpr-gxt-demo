@@ -1,12 +1,12 @@
 # Company Dashboard GXT sample migrated to Vaadin
 
-Demonstration on how to migrate a an existing GXT application to Vaadin with minimal 
-required steps. Existing functionality continues working as is, and the new
-functionality should be developed using Vaadin Framework's server-side approach.
-This sample project gives some guidance, but every migration project should be 
-considered case-by-case.
+This project show how to integrate an existing GXT Application in Vaadin 23. Therefore every view in GXT is wrapped 
+into a generic view wrapper for Vaadin 8 and afterwards wrapped with the a MPR Component to integrate it in a 
+Vaadin 23 Application. With this setup the application could be upgrade view-by-view to Vaadin 23.
 
-Exceute `mvn package jetty:run` and navigate to http://localhost:8080/ui
+The initial project has been implemented by johannesh2 and published here https://github.
+com/johannesh2/company-dashboard-migration-apache2
 
-This sample project is licensed under GPLv3. See Apache 2.0 licensed version 
-at https://github.com/johannesh2/company-dashboard-migration-apache2.
+To start the application run `mvn package jetty:run` and navigate to http://localhost:8080
+
+To run the application you need a GXT license.
