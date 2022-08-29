@@ -34,7 +34,6 @@ public class MainLayout extends AppLayout implements RouterLayout {
         tabs.add(
                 createTab(VaadinIcon.HOME, HomeView.VIEW_NAME, HomeView.class),
                 createTab(VaadinIcon.DASHBOARD, DashboardView.VIEW_NAME, DashboardView.class),
-                createTab(VaadinIcon.HAMMER, MyGWTView.VIEW_NAME, MyGWTView.class),
                 createTab(VaadinIcon.TABLE, ReportsView.VIEW_NAME, ReportsView.class)
         );
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
